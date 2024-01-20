@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+    <style>
+        .button {
+            display: inline-block; /* Сделать кнопки строчно-блочными элементами */
+            text-decoration: none; /* Убрать подчеркивание у ссылок */
+            color: black; /* Задать черный цвет текста */
+            background-color: white; /* Задать белый цвет фона */
+            padding: 15px 50px; /* Задать отступы внутри кнопок */
+            border: none; /* Убрать рамку у кнопок */
+            border-radius: 5px; /* Сделать углы кнопок скругленными */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Добавить тень кнопкам */
+            transition: transform 0.3s; /* Добавить плавный переход при наведении */
+            width: 200px; /* Задать ширину кнопок */
+            height: 50px; /* Задать высоту кнопок */
+            margin: 10px 20px; /* Задать отступы вокруг кнопок */
+            text-align: center; /* Выровнять текст по центру */
+        }
+
+        .button:hover {
+            transform: scale(1.1); /* Увеличить размер кнопок */
+        }
+
+        .container {
+            display: flex; /* Сделать контейнер флекс-контейнером */
+            flex-direction: row; /* Расположить элементы в колонку */
+            height: 100vh; /* Задать высоту контейнера равной высоте окна браузера */
+        }
+    </style>
+
+</head>
+<body>
+
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName() + ', ' + person.getYear()}">User</a>
+</div>
+
+<br/>
+<div class="container">
+    <a class="button" th:href="@{/people/new}">Добавить человека</a>
+    <a class="button" th:href="@{/books}">Все книги</a>
+    <a class="button" th:href="@{/library}">На главную</a>
+</div>
+</body>
+</html>
+

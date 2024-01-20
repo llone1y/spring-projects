@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update book</title>
+    <style>
+        /* Выравниваем все элементы формы по центру горизонтально и вертикально */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Стиль для кнопок */
+        .button {
+            display: inline-block; /* Сделать кнопки строчно-блочными элементами */
+            text-decoration: none; /* Убрать подчеркивание у ссылок */
+            color: black; /* Задать черный цвет текста */
+            background-color: white; /* Задать белый цвет фона */
+            padding: 15px 50px; /* Задать отступы внутри кнопок */
+            border: none; /* Убрать рамку у кнопок */
+            border-radius: 5px; /* Сделать углы кнопок скругленными */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Добавить тень кнопкам */
+            transition: transform 0.3s; /* Добавить плавный переход при наведении */
+            width: 200px; /* Задать ширину кнопок */
+            height: 50px; /* Задать высоту кнопок */
+            margin: 10px 20px; /* Задать отступы вокруг кнопок */
+            text-align: center; /* Выровнять текст по центру */
+        }
+
+        /* Стиль для кнопок при наведении */
+        .button:hover {
+            transform: scale(1.1); /* Увеличить размер кнопок */
+        }
+    </style>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+    <label for="title">Введите название: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
+    <br/>
+    <label for="author">Введите автора: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>
+    <br/>
+    <label for="year">Введите год издания: </label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
+    <input class="button" type="submit" value="изменить"/>
+</form>
+<div class="container">
+    <a class="button" th:href="@{/books}">Все книги</a>
+    <a class="button" th:href="@{/people}">Все читатели</a>
+    <a class="button" th:href="@{/library}">На главную</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        /* Стиль для кнопок */
+        .button {
+            display: inline-block; /* Сделать кнопки строчно-блочными элементами */
+            text-decoration: none; /* Убрать подчеркивание у ссылок */
+            color: black; /* Задать черный цвет текста */
+            background-color: white; /* Задать белый цвет фона */
+            padding: 15px 50px; /* Задать отступы внутри кнопок */
+            border: none; /* Убрать рамку у кнопок */
+            border-radius: 5px; /* Сделать углы кнопок скругленными */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Добавить тень кнопкам */
+            transition: transform 0.3s; /* Добавить плавный переход при наведении */
+            width: 200px; /* Задать ширину кнопок */
+            height: 50px; /* Задать высоту кнопок */
+            margin: 10px 20px; /* Задать отступы вокруг кнопок */
+            text-align: center; /* Выровнять текст по центру */
+        }
+
+        /* Стиль для кнопок при наведении */
+        .button:hover {
+            transform: scale(1.1); /* Увеличить размер кнопок */
+        }
+
+        /* Стиль для контейнера, в котором находятся кнопки */
+        .container {
+            display: flex; /* Сделать контейнер флекс-контейнером */
+            flex-direction: column; /* Расположить элементы в колонку */
+            align-items: center; /* Выровнять элементы по центру по вертикали */
+            justify-content: center; /* Выровнять элементы по центру по горизонтали */
+            height: 100vh; /* Задать высоту контейнера равной высоте окна браузера */
+        }
+
+        /* Стиль для фона страницы */
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="button" th:href="@{/people}">Все читатели</a>
+    <a class="button" th:href="@{/books}">Все книги</a>
+</div>
+</body>
+</html>
+
+
