@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<style>
+
+
+    .button {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        padding: 15px 50px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+        width: 200px;
+        height: 50px;
+        margin: 10px 20px;
+        text-align: center;
+    }
+
+
+    .button:hover {
+        transform: scale(1.1);
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+
+<p th:text="${person.getName()} + ', ' + ${person.getYear()}">value</p>
+<div th:if="${books}">
+    <div th:each="book : ${books}">
+        <span th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"
+              th:style="${book.isExpired()} ? 'color: red' : 'color: black'">
+                    book
+                </span>
+    </div>
+</div>
+<div th:unless="${books}">
+    <p>Человек пока не взял ни одной книги</p>
+</div>
+
+<form th:action="@{/people/{id}/edit(id=${person.getId()})}" method="get">
+    <button class="button" type="submit">Изменить</button>
+</form>
+
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+    <button class="button" type="submit">удалить</button>
+</form>
+<div class="container">
+    <a class="button" th:href="@{/people}">Все читатели</a>
+    <a class="button" th:href="@{/books}">Все книги</a>
+    <a class="button" th:href="@{/library}">На главную</a>
+</div>
+</body>
+</html>

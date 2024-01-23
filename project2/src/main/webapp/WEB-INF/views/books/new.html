@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New book</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            width: 200px;
+            height: 50px;
+            margin: 10px 20px;
+            text-align: center;
+        }
+
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/books}" th:object="${book}">
+    <label for="title">Введите название: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
+    <br/>
+    <label for="author">Введите автора: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>
+    <br/>
+    <label for="year">Введите год издания: </label>
+    <input type="text" th:field="*{year}" id="year"/>
+    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
+    <input type="submit" value="создать" class="button"/>
+</form>
+<div class="container">
+    <a class="button" th:href="@{/books}">Все книги</a>
+    <a class="button" th:href="@{/people}">Все читатели</a>
+    <a class="button" th:href="@{/library}">На главную</a>
+</div>
+</body>
+</html>

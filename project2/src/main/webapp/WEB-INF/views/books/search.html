@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search book</title>
+    <style>
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            width: 200px;
+            height: 50px;
+            margin: 10px 20px;
+            text-align: center;
+        }
+
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<form th:method="GET" th:action="@{/books/search}">
+    <label for="title">Введите поисковый запрос :</label>
+    <input type="text" id="title" th:name="title"/>
+    <input type="submit" value="искать" class="button">
+</form>
+<div th:if="${books}">
+    <div th:if="${books.isEmpty()}">
+        <p>Книг не найдено</p>
+    </div>
+    <div th:each="book : ${books}">
+        <p><a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}"></a></p>
+        <div th:if="${book.getOwner()}">
+           <p>Книга сейчас у: <a th:href="@{/people/{id}(id=${book.getOwner().getId()})}" th:text="${book.getOwner().getName()}"></a></p>
+        </div>
+        <div th:unless="${book.getOwner()}">
+            <p>Книга свободна</p>
+        </div>
+        <hr/>
+    </div>
+</div>
+<div class="container">
+    <a class="button" th:href="@{/books}">Все книги</a>
+    <a class="button" th:href="@{/people}">Все читатели</a>
+    <a class="button" th:href="@{/library}">На главную</a>
+</div>
+<body>
+
+</body>
+</html>
