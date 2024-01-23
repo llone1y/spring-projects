@@ -8,7 +8,7 @@
 
 Функционал реализован в полном объеме.
 
-Приложэение устанавливается на Apache Tomcat 10.1.16, разворачивается по контекстному пути http://localhost:8080/library
+Приложение устанавливается на Apache Tomcat 10.1.16, разворачивается по контекстному пути http://localhost:8080/library
 
 
 Использованные технологии: Java 17 SE, Apache Maven, Apache Tomcat, PostgreSQL, JDBC, Spring Core, Spring MVC, HTML, CSS.
